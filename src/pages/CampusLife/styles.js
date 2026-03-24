@@ -10,7 +10,7 @@ export const keyframes = `
 export const heroWrapSx = {
   position: "relative",
   overflow: "hidden",
-  background: `linear-gradient(135deg, ${colors.primary.dark} 0%, ${colors.primary.main} 70%, ${colors.secondary.main}0F 100%)`,
+  background: `linear-gradient(135deg, ${colors.primary.dark} 0%, ${colors.primary.main} 100%)`,
   py: { xs: 10, md: 14 },
   "&::before": {
     content: '""',
@@ -251,7 +251,7 @@ export const featureDescSx = {
 
 /* stats strip */
 export const statsStripSx = {
-  background: `linear-gradient(135deg, ${colors.primary.dark} 0%, ${colors.primary.main} 70%, ${colors.secondary.main}0F 100%)`,
+  background: `linear-gradient(135deg, ${colors.primary.dark} 0%, ${colors.primary.main} 100%)`,
   borderRadius: "20px",
   p: { xs: 4, md: 5 },
   position: "relative",

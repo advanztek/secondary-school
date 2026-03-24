@@ -1,20 +1,25 @@
 import { colors, typography } from "../../../theme";
 
 export const keyframes = `
-  @keyframes ab_heroIn  { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none} }
-  @keyframes ab_lineGrow{ from{width:0} to{width:100%} }
-  @keyframes ab_spin    { to{transform:rotate(360deg)} }
-  @keyframes ab_spinR   { to{transform:rotate(-360deg)} }
-  @keyframes ab_glow    { 0%,100%{opacity:.3;transform:scale(1)} 50%{opacity:.65;transform:scale(1.08)} }
-  @keyframes ab_shimmer { 0%{background-position:-600px 0} 100%{background-position:600px 0} }
+  @keyframes ab_heroIn   { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none} }
+  @keyframes ab_lineGrow { from{width:0} to{width:100%} }
+  @keyframes ab_spin     { to{transform:rotate(360deg)} }
+  @keyframes ab_spinR    { to{transform:rotate(-360deg)} }
+  @keyframes ab_shimmer  { 0%{background-position:-600px 0} 100%{background-position:600px 0} }
+  @keyframes ab_float    { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-18px) rotate(1deg)} }
+  @keyframes ab_pulse    { 0%,100%{opacity:.3;transform:scale(1)} 50%{opacity:.65;transform:scale(1.1)} }
+  @keyframes ab_gradShift{ 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+  @keyframes ab_ringPop  { from{opacity:0;transform:scale(.7)} to{opacity:1;transform:scale(1)} }
+  @keyframes ab_dotBlink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.6)} }
+  @keyframes ab_badgePop { from{opacity:0;transform:translateY(16px) scale(.85)} to{opacity:1;transform:none} }
 `;
 
 export const heroWrapSx = {
   position: "relative",
-  background: `linear-gradient(135deg, ${colors.primary.dark} 0%, ${colors.primary.main} 70%, ${colors.secondary.main}0F 100%)`,
   overflow: "hidden",
+  background: `linear-gradient(135deg, ${colors.primary.dark} 0%, ${colors.primary.main} 70%, ${colors.secondary.main}0F 100%)`,
   pt: { xs: 10, md: 14 },
-  pb: { xs: 0, md: 0 },
+  pb: { xs: 8, md: 10 },
   "&::before": {
     content: '""',
     position: "absolute",
@@ -36,44 +41,6 @@ export const topAccentSx = {
   animation: "ab_shimmer 4s linear infinite",
 };
 
-export const decoRingWrapSx = {
-  position: "absolute",
-  top: "-8%",
-  right: "-4%",
-  width: { xs: 0, md: 320 },
-  height: { xs: 0, md: 320 },
-  display: { xs: "none", md: "block" },
-  pointerEvents: "none",
-};
-
-export const ring1Sx = {
-  position: "absolute",
-  inset: 0,
-  borderRadius: "50%",
-  border: `1.5px dashed ${colors.primary.main}20`,
-  animation: "ab_spin 28s linear infinite",
-};
-
-export const ring2Sx = {
-  position: "absolute",
-  inset: "18%",
-  borderRadius: "50%",
-  border: `1px dashed ${colors.secondary.main}30`,
-  animation: "ab_spinR 18s linear infinite",
-};
-
-export const ringDotSx = (color, top, bottom) => ({
-  position: "absolute",
-  top,
-  bottom,
-  left: "46%",
-  width: 10,
-  height: 10,
-  borderRadius: "50%",
-  bgcolor: color,
-  boxShadow: `0 0 12px ${color}`,
-});
-
 export const glowBlobSx = {
   position: "absolute",
   bottom: "-10%",
@@ -87,16 +54,29 @@ export const glowBlobSx = {
   pointerEvents: "none",
 };
 
+export const glowBlob2Sx = {
+  position: "absolute",
+  top: "-5%",
+  right: "20%",
+  width: 260,
+  height: 260,
+  borderRadius: "50%",
+  bgcolor: colors.secondary.main,
+  opacity: 0.04,
+  filter: "blur(50px)",
+  pointerEvents: "none",
+};
+
 export const watermarkSx = {
   position: "absolute",
   top: "50%",
-  left: "50%",
-  transform: "translate(-50%,-50%)",
+  left: "40%",
+  transform: "translateY(-50%)",
   fontFamily: typography.fontFamily.main,
   fontSize: { xs: "8rem", md: "16rem" },
   fontWeight: typography.fontWeight.extraBold,
-  color: colors.primary.main,
-  opacity: 0.04,
+  color: "white",
+  opacity: 0.03,
   whiteSpace: "nowrap",
   userSelect: "none",
   pointerEvents: "none",
@@ -104,6 +84,7 @@ export const watermarkSx = {
   zIndex: 0,
 };
 
+/* ── LEFT text ── */
 export const labelBarSx = {
   width: 36,
   height: 2,
@@ -132,7 +113,12 @@ export const headLine2Sx = {
   fontFamily: typography.fontFamily.main,
   fontSize: { xs: typography.fontSize["3xl"], md: "3.8rem" },
   fontWeight: typography.fontWeight.extraBold,
-  color: colors.secondary.main,
+  background: `linear-gradient(120deg,${colors.secondary.dark},${colors.secondary.main},${colors.secondary.light},${colors.secondary.main})`,
+  backgroundSize: "200%",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  backgroundClip: "text",
+  animation: "ab_gradShift 4s ease infinite",
   lineHeight: 1.12,
 };
 
@@ -148,10 +134,10 @@ export const underlineSx = {
 export const subtitleSx = {
   fontFamily: typography.fontFamily.main,
   fontSize: typography.fontSize.base,
-  color: "rgba(255,255,255,0.6)",
+  color: "rgba(255,255,255,0.58)",
   lineHeight: 1.9,
-  maxWidth: 560,
-  mb: 6,
+  maxWidth: 480,
+  mb: 4,
 };
 
 export const mottoSx = {
@@ -176,59 +162,47 @@ export const mottoTextSx = {
   textTransform: "uppercase",
 };
 
-export const tabsWrapSx = { position: "relative", zIndex: 2, mt: 2 };
-
-export const tabRowSx = {
-  display: "flex",
-  gap: 0,
-  overflowX: "auto",
-  "&::-webkit-scrollbar": { display: "none" },
+/* ── RIGHT side stat badges ── */
+export const rightWrapSx = {
+  display: { xs: "none", md: "flex" },
+  alignItems: "center",
+  justifyContent: "center",
+  position: "relative",
 };
 
-export const tabSx = (isActive) => ({
+/* outer orbit ring */
+export const orbitRingSx = (size, delay, reverse) => ({
+  position: "absolute",
+  width: size,
+  height: size,
+  borderRadius: "50%",
+  border: `1px dashed rgba(255,255,255,${reverse ? "0.08" : "0.12"})`,
+  animation: `${reverse ? "ab_spinR" : "ab_spin"} ${delay}s linear infinite`,
+  animation: `ab_ringPop .8s ease both, ${reverse ? "ab_spinR" : "ab_spin"} ${delay}s linear infinite`,
+});
+
+export const logoBoxSx = {
+  width: 160,
+  height: 160,
+  borderRadius: "28px",
+  bgcolor: "white",
+  p: "10px",
+  boxShadow: `0 0 0 3px ${colors.secondary.main}55, 0 30px 70px rgba(0,0,0,0.4)`,
   display: "flex",
   alignItems: "center",
-  gap: 1,
-  px: { xs: 2.5, md: 3.5 },
-  py: 2.2,
-  cursor: "pointer",
+  justifyContent: "center",
   position: "relative",
-  flexShrink: 0,
-  transition: "all .25s ease",
-  bgcolor: isActive ? colors.background.paper : "transparent",
-  borderRadius: isActive ? "12px 12px 0 0" : 0,
-  boxShadow: isActive ? `0 -2px 12px ${colors.primary.main}14` : "none",
-  border: isActive ? `1px solid ${colors.divider}` : "1px solid transparent",
-  borderBottom: "none",
-  "&::before": {
-    content: '""',
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 3,
-    bgcolor: isActive ? colors.secondary.main : "transparent",
-    borderRadius: "12px 12px 0 0",
-    transition: "background .25s ease",
-  },
-  "&:hover": {
-    bgcolor: isActive ? colors.background.paper : `${colors.primary.main}08`,
-  },
-});
+  zIndex: 5,
+  animation: "ab_float 5s ease-in-out infinite",
+};
 
-export const tabIconSx = (isActive) => ({
-  fontSize: 16,
-  color: isActive ? colors.secondary.dark : "rgba(255,255,255,0.5)",
-  transition: "color .25s ease",
-});
-
-export const tabLabelSx = (isActive) => ({
-  fontFamily: typography.fontFamily.main,
-  fontSize: typography.fontSize.sm,
-  fontWeight: isActive
-    ? typography.fontWeight.semiBold
-    : typography.fontWeight.regular,
-  color: isActive ? colors.primary.dark : "rgba(255,255,255,0.65)",
-  whiteSpace: "nowrap",
-  transition: "color .25s ease",
+/* stat badge floating around the logo */
+export const statBadgeSx = (top, left, right, bottom, delay) => ({
+  position: "absolute",
+  top,
+  left,
+  right,
+  bottom,
+  zIndex: 6,
+  animation: `ab_badgePop .7s cubic-bezier(.34,1.2,.64,1) ${delay}s both`,
 });

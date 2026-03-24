@@ -54,7 +54,6 @@ const StaffCard = ({ member, index, visible }) => {
                 cursor: 'default',
             }}
         >
-            {/* Photo */}
             <Box sx={{ position: 'relative', height: 240, overflow: 'hidden' }}>
                 <Box
                     component="img"
@@ -67,7 +66,6 @@ const StaffCard = ({ member, index, visible }) => {
                         transform: hovered ? 'scale(1.06)' : 'scale(1)',
                     }}
                 />
-                {/* Overlay on hover */}
                 <Box sx={{
                     position: 'absolute', inset: 0,
                     background: `linear-gradient(180deg, transparent 40%, ${deptColor}DD 100%)`,
@@ -75,7 +73,6 @@ const StaffCard = ({ member, index, visible }) => {
                     transition: 'opacity 0.35s ease',
                 }} />
 
-                {/* Social icons appear on hover */}
                 <Stack
                     direction="row" gap={1}
                     sx={{
@@ -101,7 +98,6 @@ const StaffCard = ({ member, index, visible }) => {
                     ))}
                 </Stack>
 
-                {/* Dept badge */}
                 <Box sx={{
                     position: 'absolute', top: 12, left: 12,
                     bgcolor: deptColor,
@@ -120,7 +116,7 @@ const StaffCard = ({ member, index, visible }) => {
                 </Box>
             </Box>
 
-            {/* Info */}
+
             <Box sx={{ p: 2.5 }}>
                 <Typography sx={{
                     fontFamily: typography.fontFamily.heading,
@@ -174,7 +170,6 @@ const StaffTab = () => {
             <Box ref={ref} sx={{ bgcolor: colors.background.default, py: { xs: 8, md: 12 } }}>
                 <Container maxWidth="xl">
 
-                    {/* Header */}
                     <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 8 }, animation: visible ? 'st_fadeUp 0.7s ease both' : 'none' }}>
                         <Stack direction="row" alignItems="center" justifyContent="center" gap={2} sx={{ mb: 2 }}>
                             <Box sx={{ height: 1, bgcolor: colors.secondary.main, opacity: 0.4, flex: 1, maxWidth: 60 }} />
@@ -190,7 +185,7 @@ const StaffTab = () => {
                             color: colors.primary.dark,
                             mb: 1.5,
                         }}>
-                            The Faces Behind Preston
+                            The Faces Behind Pamsset
                         </Typography>
                         <Typography sx={{
                             fontFamily: typography.fontFamily.body,
@@ -198,12 +193,11 @@ const StaffTab = () => {
                             color: colors.text.secondary,
                             maxWidth: 500, mx: 'auto', lineHeight: 1.8,
                         }}>
-                            Our dedicated staff are the heartbeat of Preston — experts in their fields and
+                            Our dedicated staff are the heartbeat of Pamsset — experts in their fields and
                             passionate about every student's success.
                         </Typography>
                     </Box>
 
-                    {/* Note about photos */}
                     <Box sx={{
                         bgcolor: `${colors.secondary.main}15`,
                         border: `1px solid ${colors.secondary.main}44`,
@@ -214,7 +208,6 @@ const StaffTab = () => {
                     }}>
                     </Box>
 
-                    {/* Grid */}
                     <Box sx={{
                         display: 'grid',
                         gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr 1fr' },

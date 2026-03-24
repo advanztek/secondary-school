@@ -148,19 +148,6 @@ const CampusLifePage = () => {
                             })}
                         </Box>
 
-                        {/* Stats strip */}
-                        {/* <Box sx={statsStripSx}>
-                            <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg,transparent,${colors.secondary.main},${colors.secondary.light},${colors.secondary.main},transparent)`, backgroundSize: '400px 100%', animation: 'cl_shimmer 3s linear infinite' }} />
-                            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr 1fr', sm: 'repeat(4,1fr)' }, gap: { xs: 4, md: 0 }, position: 'relative', zIndex: 1, textAlign: 'center' }}>
-                                {stats.map((s, i) => (
-                                    <Box key={s.label} sx={{ borderRight: { sm: i < stats.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none' }, px: { sm: 3 }, animation: visible ? `cl_fadeUp .6s ease ${i * .1 + .2}s both` : 'none' }}>
-                                        <Typography sx={statValueSx}>{s.value}</Typography>
-                                        <Typography sx={statLabelSx}>{s.label}</Typography>
-                                    </Box>
-                                ))}
-                            </Box>
-                        </Box> */}
-
                     </Container>
                 </Box>
             </Box>

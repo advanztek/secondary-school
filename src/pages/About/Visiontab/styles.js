@@ -6,22 +6,25 @@ export const keyframes = `
   @keyframes vm_shimmer { 0%{background-position:-400px 0} 100%{background-position:400px 0} }
   @keyframes vm_spin    { to{transform:rotate(360deg)} }
   @keyframes vm_spinR   { to{transform:rotate(-360deg)} }
-  @keyframes vm_float   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-  @keyframes vm_pulse   { 0%,100%{opacity:.35;transform:scale(1)} 50%{opacity:.7;transform:scale(1.08)} }
   @keyframes vm_lineGrow{ from{width:0} to{width:100%} }
+  @keyframes vm_gradShift{ 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+  @keyframes vm_float   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 `;
 
-/* ── Quote banner ── */
 export const bannerSx = {
   position: "relative",
   overflow: "hidden",
-  background: `linear-gradient(135deg, ${colors.primary.dark} 0%, ${colors.primary.dark} 100%)`,
+  bgcolor: colors.background.paper,
+  borderTop: `4px solid transparent`,
+  backgroundImage: `linear-gradient(${colors.background.default}, ${colors.background.default}), linear-gradient(90deg, ${colors.primary.dark}, ${colors.secondary.main}, ${colors.primary.main})`,
+  backgroundOrigin: "border-box",
+  backgroundClip: "padding-box, border-box",
   py: { xs: 8, md: 11 },
   "&::before": {
     content: '""',
     position: "absolute",
     inset: 0,
-    backgroundImage: `radial-gradient(rgba(255,255,255,0.10) 1.5px, transparent 1.5px)`,
+    backgroundImage: `radial-gradient(${colors.primary.main}10 1.5px, transparent 1.5px)`,
     backgroundSize: "26px 26px",
     pointerEvents: "none",
   },
@@ -38,14 +41,21 @@ export const bannerShimmerSx = {
   animation: "vm_shimmer 3s linear infinite",
 };
 
-export const bannerBottomLineSx = { display: "none" };
+export const bannerBottomLineSx = {
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  right: 0,
+  height: 1,
+  bgcolor: colors.divider,
+};
 
 export const decoRingWrapSx = {
   position: "absolute",
   top: "-15%",
   right: "-5%",
-  width: { xs: 0, md: 340 },
-  height: { xs: 0, md: 340 },
+  width: { xs: 0, md: 300 },
+  height: { xs: 0, md: 300 },
   display: { xs: "none", md: "block" },
   pointerEvents: "none",
 };
@@ -54,7 +64,7 @@ export const ring1Sx = {
   position: "absolute",
   inset: 0,
   borderRadius: "50%",
-  border: `1px dashed rgba(255,255,255,0.1)`,
+  border: `1px dashed ${colors.primary.main}18`,
   animation: "vm_spin 30s linear infinite",
 };
 
@@ -78,7 +88,18 @@ export const ringDotSx = (color, top, bottom) => ({
   boxShadow: `0 0 12px ${color}`,
 });
 
-export const glowBlobSx = { display: "none" };
+export const glowBlobSx = {
+  position: "absolute",
+  bottom: "-10%",
+  left: "-4%",
+  width: 320,
+  height: 320,
+  borderRadius: "50%",
+  bgcolor: colors.primary.main,
+  opacity: 0.05,
+  filter: "blur(60px)",
+  pointerEvents: "none",
+};
 
 export const watermarkSx = {
   position: "absolute",
@@ -87,8 +108,8 @@ export const watermarkSx = {
   fontFamily: typography.fontFamily.main,
   fontSize: { xs: "8rem", md: "14rem" },
   fontWeight: typography.fontWeight.extraBold,
-  color: "white",
-  opacity: 0.03,
+  color: colors.primary.main,
+  opacity: 0.04,
   userSelect: "none",
   pointerEvents: "none",
   lineHeight: 1,
@@ -98,7 +119,7 @@ export const bannerLabelSx = {
   fontFamily: typography.fontFamily.main,
   fontSize: typography.fontSize.xs,
   fontWeight: typography.fontWeight.bold,
-  color: colors.secondary.main,
+  color: colors.secondary.dark,
   letterSpacing: 3,
   textTransform: "uppercase",
   mb: 3,
@@ -108,8 +129,8 @@ export const quoteSx = {
   fontFamily: typography.fontFamily.main,
   fontSize: { xs: typography.fontSize["2xl"], md: "2.8rem" },
   fontWeight: typography.fontWeight.bold,
-  color: "white",
-  lineHeight: 1.35,
+  color: colors.primary.dark,
+  lineHeight: 1.4,
   mb: 3,
   fontStyle: "italic",
 };
@@ -117,7 +138,7 @@ export const quoteSx = {
 export const quoteAuthorSx = {
   fontFamily: typography.fontFamily.main,
   fontSize: typography.fontSize.xs,
-  color: colors.secondary.main,
+  color: colors.secondary.dark,
   letterSpacing: 2.5,
   textTransform: "uppercase",
 };
@@ -127,13 +148,15 @@ export const quoteLineSx = {
   height: 2,
   mx: "auto",
   mb: 3,
+  borderRadius: 2,
   background: `linear-gradient(90deg,transparent,${colors.secondary.main},transparent)`,
   animation: "vm_lineGrow .8s ease .4s both",
 };
 
-/* ── Grid section ── */
+export const quoteIconColor = `${colors.primary.main}33`;
+
 export const gridWrapSx = {
-  bgcolor: colors.background.default,
+  bgcolor: colors.background.paper,
   py: { xs: 8, md: 12 },
   position: "relative",
   overflow: "hidden",
@@ -157,22 +180,21 @@ export const sectionHeadSx = {
 export const cardSx = (color, visible, delay) => ({
   position: "relative",
   overflow: "hidden",
-  bgcolor: colors.background.paper,
+  bgcolor: colors.background.default,
   borderRadius: "18px",
   p: { xs: 3.5, md: 5 },
-  border: `1px solid ${colors.divider}`,
-  transition: "all 0.35s cubic-bezier(.34,1.2,.64,1)",
-  animation: visible ? `vm_scaleIn 0.7s ease ${delay}s both` : "none",
+  border: `1.5px solid ${colors.divider}`,
+  transition: "all .35s cubic-bezier(.34,1.2,.64,1)",
+  animation: visible ? `vm_scaleIn .7s ease ${delay}s both` : "none",
   "&:hover": {
     transform: "translateY(-8px)",
-    boxShadow: `0 24px 60px rgba(27,90,174,0.13), 0 0 0 1.5px ${color}44`,
+    boxShadow: `0 24px 60px rgba(27,90,174,0.12), 0 0 0 1.5px ${color}44`,
     borderColor: `${color}44`,
     "& .pillar-icon-box": {
       bgcolor: color,
       transform: "rotate(8deg) scale(1.1)",
     },
     "& .pillar-icon": { color: "white" },
-    "& .card-shimmer": { animation: "vm_shimmer .6s ease forwards" },
   },
   "&::before": {
     content: '""',
@@ -183,7 +205,6 @@ export const cardSx = (color, visible, delay) => ({
     height: 4,
     bgcolor: color,
   },
-  /* shimmer overlay */
   "&::after": {
     content: '""',
     position: "absolute",
@@ -192,7 +213,7 @@ export const cardSx = (color, visible, delay) => ({
     width: "55%",
     left: "-80%",
     background:
-      "linear-gradient(105deg,transparent 30%,rgba(255,255,255,0.45) 50%,transparent 70%)",
+      "linear-gradient(105deg,transparent 30%,rgba(255,255,255,0.6) 50%,transparent 70%)",
     zIndex: 5,
     pointerEvents: "none",
   },
@@ -221,7 +242,7 @@ export const iconBoxSx = (color) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  transition: "all 0.3s ease",
+  transition: "all .3s ease",
 });
 
 export const cardTitleSx = {

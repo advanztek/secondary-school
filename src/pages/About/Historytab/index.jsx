@@ -44,7 +44,6 @@ const milestones = [
     { year: '2024', title: 'Today & Beyond', desc: "With over 3,000 students, 200+ staff and 25 years of proven results, we continue shaping Nigeria's next generation of confident, capable leaders.", Icon: RocketLaunchIcon, color: colors.secondary.dark },
 ];
 
-// ── Single milestone card
 const MilestoneCard = ({ m, i, visible }) => {
     const [hovered, setHovered] = useState(false);
     const Icon = m.Icon;
@@ -66,7 +65,6 @@ const MilestoneCard = ({ m, i, visible }) => {
                 transition: 'all 0.35s ease',
                 height: '100%',
             }}>
-                {/* Top color bar — expands on hover */}
                 <Box sx={{
                     height: 4,
                     background: `linear-gradient(90deg, ${m.color}, ${m.color}88)`,
@@ -74,7 +72,6 @@ const MilestoneCard = ({ m, i, visible }) => {
                     transition: 'width 0.4s ease',
                 }} />
 
-                {/* Faded year watermark */}
                 <Typography sx={{
                     position: 'absolute', top: 8, right: 16,
                     fontFamily: typography.fontFamily.accent,
@@ -88,7 +85,6 @@ const MilestoneCard = ({ m, i, visible }) => {
 
                 <Box sx={{ p: { xs: 3, md: 3.5 }, position: 'relative', zIndex: 1 }}>
 
-                    {/* Icon box + year badge row */}
                     <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 2 }}>
                         <Box sx={{
                             width: 52, height: 52, borderRadius: '14px',
@@ -118,7 +114,6 @@ const MilestoneCard = ({ m, i, visible }) => {
                         </Box>
                     </Stack>
 
-                    {/* Divider — widens on hover */}
                     <Box sx={{ height: 2, bgcolor: m.color, borderRadius: 1, mb: 2, width: hovered ? '50px' : '28px', transition: 'width 0.3s ease' }} />
 
                     <Typography sx={{ fontFamily: typography.fontFamily.heading, fontSize: typography.fontSize.lg, fontWeight: typography.fontWeight.bold, color: colors.primary.dark, lineHeight: 1.3, mb: 1.5 }}>
@@ -128,8 +123,6 @@ const MilestoneCard = ({ m, i, visible }) => {
                         {m.desc}
                     </Typography>
                 </Box>
-
-                {/* Bottom shimmer on hover */}
                 {hovered && (
                     <Box sx={{
                         position: 'absolute', bottom: 0, left: 0, right: 0, height: 2,
@@ -162,7 +155,6 @@ const HistoryTab = () => {
             <Box ref={ref} sx={{ py: { xs: 8, md: 12 }, bgcolor: colors.background.default }}>
                 <Container maxWidth="xl">
 
-                    {/* ── Intro: text left + image right */}
                     <Box sx={{
                         display: 'grid',
                         gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
@@ -209,7 +201,6 @@ const HistoryTab = () => {
                         </Box>
                     </Box>
 
-                    {/* ── Milestones header */}
                     <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 8 }, animation: visible ? 'hs_fadeUp 0.7s ease 0.1s both' : 'none' }}>
                         <Stack direction="row" alignItems="center" justifyContent="center" gap={2} sx={{ mb: 2 }}>
                             <Box sx={{ height: 1, bgcolor: colors.secondary.main, opacity: 0.4, flex: 1, maxWidth: 80 }} />
@@ -226,7 +217,6 @@ const HistoryTab = () => {
                         </Typography>
                     </Box>
 
-                    {/* ── Milestones grid — 3 cols desktop, 2 tablet, 1 mobile */}
                     <Box sx={{
                         display: 'grid',
                         gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr' },
@@ -236,48 +226,6 @@ const HistoryTab = () => {
                         {milestones.map((m, i) => (
                             <MilestoneCard key={m.year} m={m} i={i} visible={visible} />
                         ))}
-                    </Box>
-
-                    {/* ── Bottom stats strip */}
-                    <Box sx={{
-                        bgcolor: colors.primary.dark,
-                        borderRadius: '20px',
-                        p: { xs: 4, md: 5 },
-                        position: 'relative', overflow: 'hidden',
-                        animation: visible ? 'hs_fadeUp 0.8s ease 0.7s both' : 'none',
-                        '&::before': {
-                            content: '""', position: 'absolute', inset: 0,
-                            backgroundImage: `radial-gradient(${colors.primary.light}12 1.5px, transparent 1.5px)`,
-                            backgroundSize: '24px 24px',
-                        },
-                    }}>
-                        <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg, transparent, ${colors.secondary.main}, ${colors.secondary.light}, ${colors.secondary.main}, transparent)`, backgroundSize: '400px 100%', animation: 'hs_shimmer 3s linear infinite' }} />
-                        <Box sx={{
-                            display: 'grid',
-                            gridTemplateColumns: { xs: '1fr 1fr', sm: '1fr 1fr 1fr 1fr' },
-                            gap: { xs: 4, md: 0 },
-                            position: 'relative', zIndex: 1, textAlign: 'center',
-                        }}>
-                            {[
-                                { value: '25+', label: 'Years of Excellence' },
-                                { value: '3,000+', label: 'Students Enrolled' },
-                                { value: '100%', label: 'WAEC Pass Rate' },
-                                { value: '10,000+', label: 'Alumni Worldwide' },
-                            ].map((stat, i) => (
-                                <Box key={stat.label} sx={{
-                                    borderRight: { sm: i < 3 ? `1px solid rgba(255,255,255,0.08)` : 'none' },
-                                    px: { sm: 3 },
-                                    animation: visible ? `hs_fadeUp 0.6s ease ${i * 0.1 + 0.8}s both` : 'none',
-                                }}>
-                                    <Typography sx={{ fontFamily: typography.fontFamily.accent, fontSize: { xs: typography.fontSize['2xl'], md: '2.6rem' }, fontWeight: typography.fontWeight.black, color: colors.secondary.main, lineHeight: 1, mb: 0.5 }}>
-                                        {stat.value}
-                                    </Typography>
-                                    <Typography sx={{ fontFamily: typography.fontFamily.body, fontSize: typography.fontSize.xs, color: 'rgba(255,255,255,0.45)', letterSpacing: 1, textTransform: 'uppercase' }}>
-                                        {stat.label}
-                                    </Typography>
-                                </Box>
-                            ))}
-                        </Box>
                     </Box>
 
                 </Container>

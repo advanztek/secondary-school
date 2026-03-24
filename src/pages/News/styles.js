@@ -13,7 +13,7 @@ export const keyframes = `
 export const heroWrapSx = {
   position: "relative",
   overflow: "hidden",
-  background: `linear-gradient(135deg, ${colors.primary.dark} 0%, ${colors.primary.main} 70%, ${colors.secondary.main}0F 100%)`,
+  background: `linear-gradient(135deg, ${colors.primary.dark} 0%, ${colors.primary.main} 100%)`,
   py: { xs: 10, md: 13 },
   "&::before": {
     content: '""',
@@ -77,12 +77,12 @@ export const ringDotSx = (color, top, bottom) => ({
 export const glowBlobSx = {
   position: "absolute",
   bottom: "-15%",
-  right: "-5%",
+  left: "-5%",
   width: 360,
   height: 360,
   borderRadius: "50%",
-  bgcolor: colors.secondary.dark,
-  opacity: 0.07,
+  bgcolor: colors.primary.light,
+  opacity: 0.1,
   filter: "blur(60px)",
   pointerEvents: "none",
 };
