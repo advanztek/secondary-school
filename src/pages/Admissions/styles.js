@@ -11,12 +11,11 @@ export const keyframes = `
   @keyframes ad_spinR   { to{transform:rotate(-360deg)} }
 `;
 
-/* ── Hero ── */
+
 export const heroWrapSx = {
   position: "relative",
   overflow: "hidden",
-  /* silent — gold barely there at 0F = 6% */
-  background: `linear-gradient(135deg, ${colors.primary.dark} 0%, ${colors.primary.main} 70%, ${colors.secondary.main}0F 100%)`,
+  background: `linear-gradient(135deg, ${colors.primary.dark} 0%, ${colors.primary.main} 100%, ${colors.secondary.main}0F 100%)`,
   py: { xs: 10, md: 14 },
   "&::before": {
     content: '""',

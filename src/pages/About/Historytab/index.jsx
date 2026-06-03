@@ -183,14 +183,14 @@ const HistoryTab = () => {
                         </Box>
 
                         <Box sx={{ position: 'relative', animation: visible ? 'hs_fadeRight 0.8s ease 0.2s both' : 'none' }}>
-                            <Box component="img" src="/about-history.jpg" alt="School history"
+                            <Box component="img" src="/life.png" alt="School history"
                                 sx={{ width: '100%', height: { xs: 280, md: 420 }, objectFit: 'cover', borderRadius: '16px', display: 'block', boxShadow: '0 24px 60px rgba(0,0,0,0.15)' }}
                             />
                             <Box sx={{ position: 'absolute', top: 20, left: -20, right: 20, bottom: -20, border: `2px solid ${colors.secondary.main}`, borderRadius: '16px', zIndex: -1, opacity: 0.35 }} />
                             <Box sx={{
                                 position: 'absolute', top: -16, right: -16,
                                 bgcolor: colors.secondary.main, borderRadius: '50%',
-                                width: 90, height: 90,
+                                width: 80, height: 80,
                                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                                 boxShadow: `0 8px 24px rgba(212,160,23,0.4)`,
                                 animation: 'hs_float 4s ease-in-out infinite',

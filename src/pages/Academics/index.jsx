@@ -142,17 +142,14 @@ const AcademicsPage = () => {
                             </Stack>
                         </Box>
 
-                        {/* RIGHT — image */}
                         <Box sx={{ position: 'relative', display: { xs: 'none', md: 'block' }, animation: visible ? 'ac_heroIn .8s ease .3s both' : 'none' }}>
-                            <Box component="img" src="/academics-hero.jpg" alt="Academics at Pamsset" sx={heroImgSx} />
+                            <Box component="img" src="/academics11.png" alt="Academics at Pamsset" sx={heroImgSx} />
                             <Box sx={heroImgFrameSx} />
                         </Box>
 
                     </Box>
                 </Container>
             </Box>
-
-            {/* ── Section label ── */}
             <Box sx={sectionWrapSx}>
                 <Container maxWidth="xl">
                     <Box sx={{ textAlign: 'center', animation: visible ? 'ac_heroIn .7s ease .6s both' : 'none' }}>

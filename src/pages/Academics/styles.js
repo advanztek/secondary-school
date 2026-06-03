@@ -10,14 +10,12 @@ export const keyframes = `
   @keyframes ac_spinR   { to{transform:rotate(-360deg)} }
 `;
 
-/* ── Hero ── */
+
 export const heroWrapSx = {
   position: "relative",
   overflow: "hidden",
-  /* same silent gradient as AboutHero */
-  background: `linear-gradient(135deg, ${colors.primary.dark} 0%, ${colors.primary.main} 70%, ${colors.secondary.main}0F 100%)`,
+  background: `linear-gradient(135deg, ${colors.primary.dark} 0%, ${colors.primary.main} 100%, ${colors.secondary.main}0F 100%)`,
   py: { xs: 10, md: 14 },
-  /* dot grid — clearly visible */
   "&::before": {
     content: '""',
     position: "absolute",
@@ -106,7 +104,6 @@ export const watermarkSx = {
   lineHeight: 1,
 };
 
-/* breadcrumb */
 export const crumbHomeSx = {
   fontFamily: typography.fontFamily.main,
   fontSize: typography.fontSize.xs,

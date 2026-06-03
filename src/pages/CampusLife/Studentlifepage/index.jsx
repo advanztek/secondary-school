@@ -115,7 +115,7 @@ const StudentLifePage = () => {
               <Box sx={{ animation: visible ? 'sl_fadeUp 0.7s ease 0.2s both' : 'none', position: 'relative' }}>
                 <Box
                   component="img"
-                  src="/student-life.jpeg"
+                  src="/life.png"
                   alt="Student Life at Preston"
                   sx={{ width: '100%', height: { xs: 280, md: 420 }, objectFit: 'cover', borderRadius: '20px', display: 'block', boxShadow: '0 32px 80px rgba(0,0,0,0.15)' }}
                 />

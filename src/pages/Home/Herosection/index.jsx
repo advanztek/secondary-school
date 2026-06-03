@@ -17,7 +17,7 @@ const slides = [
     sub: 'Our curriculum nurtures critical thinking, creativity, and a passion for lifelong learning.',
   },
   {
-    src: '/hero3.jpg',
+    src: '/life.png',
     tag: 'Beyond the Classroom',
     heading: 'Grow Beyond\nEvery Boundary',
     sub: 'Sports, arts, clubs and culture — we build well-rounded students ready for the world.',
@@ -86,7 +86,6 @@ const HeroSection = () => {
 
       <Box sx={{ position: 'relative', height: '100vh', minHeight: 640, overflow: 'hidden' }}>
 
-        {/* ── Slides — Ken Burns ── */}
         {slides.map((slide, i) => (
           <Box key={i} sx={{
             position: 'absolute', inset: 0,
@@ -99,7 +98,6 @@ const HeroSection = () => {
           }} />
         ))}
 
-        {/* ── Overlay — off-white tinted with primary blue, calm & breathable ── */}
         <Box sx={{
           position: 'absolute', inset: 0, zIndex: 2,
           background: `linear-gradient(
@@ -110,15 +108,11 @@ const HeroSection = () => {
             ${colors.background.default}22 100%
           )`,
         }} />
-
-        {/* ── Decorative vertical gold line ── */}
         <Box sx={{
           position: 'absolute', left: { md: 60 }, top: '18%', bottom: '18%',
           width: '1px', zIndex: 3, display: { xs: 'none', md: 'block' },
           background: `linear-gradient(180deg, transparent, ${colors.secondary.main}99, transparent)`,
         }} />
-
-        {/* ── Faded watermark letter ── */}
         <Typography sx={{
           position: 'absolute', right: { xs: '-10%', md: '2%' }, bottom: '-5%',
           fontFamily: typography.fontFamily.main,
@@ -130,7 +124,6 @@ const HeroSection = () => {
           P
         </Typography>
 
-        {/* ── Content ── */}
         <Box sx={{
           position: 'absolute', inset: 0, zIndex: 4,
           display: 'flex', alignItems: 'center',
@@ -138,8 +131,6 @@ const HeroSection = () => {
           pr: { xs: 3, md: 0 },
         }}>
           <Box sx={{ maxWidth: { xs: '100%', md: 580 } }}>
-
-            {/* Tag pill */}
             <Box key={`tag-${animKey}`} sx={{
               display: 'inline-flex', alignItems: 'center', gap: 1,
               mb: 3, px: 2, py: 0.7,
@@ -160,7 +151,6 @@ const HeroSection = () => {
               </Typography>
             </Box>
 
-            {/* Heading */}
             <Typography key={`heading-${animKey}`} sx={{
               fontFamily: typography.fontFamily.main,
               fontSize: { xs: typography.fontSize['3xl'], md: '3.2rem', lg: '3.8rem' },
@@ -173,15 +163,12 @@ const HeroSection = () => {
             }}>
               {slides[current].heading}
             </Typography>
-
-            {/* Gold underline */}
             <Box key={`line-${animKey}`} sx={{
               height: 3, bgcolor: colors.secondary.main,
               mb: 3, borderRadius: 2,
               animation: 'expandWidth 0.6s ease 0.5s both',
             }} />
 
-            {/* Subtitle */}
             <Typography key={`sub-${animKey}`} sx={{
               fontFamily: typography.fontFamily.main,
               fontSize: { xs: typography.fontSize.base, md: typography.fontSize.md },
@@ -193,12 +180,10 @@ const HeroSection = () => {
               {slides[current].sub}
             </Typography>
 
-            {/* ── CTA Buttons ── */}
             <Stack key={`cta-${animKey}`}
               direction={{ xs: 'column', sm: 'row' }} gap={2}
               sx={{ animation: 'slideUpFade 0.7s ease 0.55s both' }}
             >
-              {/* Primary — gold solid */}
               <Button variant="contained"
                 onClick={() => navigate('/admissions')}
                 sx={{
@@ -221,7 +206,6 @@ const HeroSection = () => {
                 Apply for Admission
               </Button>
 
-              {/* Secondary — off-white glass */}
               <Button variant="outlined"
                 onClick={() => navigate('/about/history')}
                 sx={{
@@ -250,7 +234,6 @@ const HeroSection = () => {
           </Box>
         </Box>
 
-        {/* ── Progress bar ── */}
         <Box sx={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 3, bgcolor: `${colors.background.default}18`, zIndex: 5 }}>
           <Box key={`progress-${animKey}`} sx={{
             height: '100%', bgcolor: colors.secondary.main,
@@ -258,7 +241,6 @@ const HeroSection = () => {
           }} />
         </Box>
 
-        {/* ── Slide dots ── */}
         <Stack direction="row" gap={1.2} alignItems="center" sx={{
           position: 'absolute',
           bottom: 28,
@@ -279,7 +261,6 @@ const HeroSection = () => {
           ))}
         </Stack>
 
-        {/* ── Slide counter ── */}
         <Box sx={{ position: 'absolute', bottom: 26, left: { xs: 20, md: 80 }, zIndex: 5 }}>
           <Typography sx={{
             fontFamily: typography.fontFamily.main,

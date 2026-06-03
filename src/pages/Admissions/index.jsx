@@ -18,10 +18,19 @@ import {
     cardStatBoxSx, cardTitleSx, cardDescSx, cardCtaTextSx,
 } from './styles';
 
-const getDaysLeft = () => {
-    const diff = Math.ceil((new Date(2026, 6, 31) - new Date()) / 86400000);
-    return diff > 0 ? diff : 0;
+const DEADLINE = new Date(2026, 6, 31, 23, 59, 59);
+
+const getTimeLeft = () => {
+    const diff = DEADLINE - new Date();
+    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const minutes = Math.floor((diff % 3600000) / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
+    return { days, hours, minutes, seconds };
 };
+
+const pad = (n) => String(n).padStart(2, '0');
 
 const cards = [
     { id: 'apply', icon: HowToRegIcon, number: '01', title: 'How to Apply', desc: 'A simple step-by-step guide to applying for a place at Pamsset School, Aliade.', img: '/image.jpg', tag: 'Get Started', color: colors.primary.main, path: '/admissions/apply', stat: { value: '4 Steps', label: 'Simple Process' }, highlight: false },
@@ -30,7 +39,6 @@ const cards = [
     { id: 'apply-now', icon: EditNoteIcon, number: '04', title: 'Apply Now', desc: "Ready to join the Pamsset family? Start your application for the 2026/2027 session today.", img: '/admissions-cta.jpg', tag: '2026/2027 Open', color: colors.secondary.main, path: '/admissions/apply', stat: { value: 'July 31', label: 'Deadline' }, highlight: true },
 ];
 
-/* ── Single card ── */
 const AdmissionCard = ({ card, index, visible }) => {
     const [hovered, setHovered] = useState(false);
     const navigate = useNavigate();
@@ -45,14 +53,11 @@ const AdmissionCard = ({ card, index, visible }) => {
                 animation: visible ? `ad_cardIn .7s ease ${index * .1 + .2}s both` : 'none',
             }}>
 
-            {/* bg image */}
             <Box component="img" src={card.img} alt={card.title}
                 sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transition: 'transform .6s ease', transform: hovered ? 'scale(1.07)' : 'scale(1)' }} />
 
-            {/* calm overlay */}
             <Box sx={cardOverlaySx(card.color, hovered)} />
 
-            {/* top: number + tag */}
             <Box sx={{ position: 'absolute', top: 20, left: 20, right: 20, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Typography sx={cardNumSx}>{card.number}</Typography>
                 <Box sx={cardTagSx(card.highlight, card.color)}>
@@ -60,7 +65,6 @@ const AdmissionCard = ({ card, index, visible }) => {
                 </Box>
             </Box>
 
-            {/* bottom: content */}
             <Box sx={{ position: 'absolute', bottom: 0, left: 0, right: 0, p: 3 }}>
                 <Box sx={cardStatBoxSx(card.color, card.highlight, hovered)}>
                     <Typography sx={{ fontFamily: typography.fontFamily.main, fontSize: typography.fontSize.sm, fontWeight: typography.fontWeight.bold, color: card.highlight ? colors.primary.dark : 'white' }}>
@@ -94,17 +98,24 @@ const AdmissionCard = ({ card, index, visible }) => {
     );
 };
 
-/* ── Main page ── */
 const AdmissionsPage = () => {
     const [visible, setVisible] = useState(false);
-    const [daysLeft] = useState(getDaysLeft());
-    useEffect(() => { setTimeout(() => setVisible(true), 100); }, []);
+    const [timeLeft, setTimeLeft] = useState(getTimeLeft());
+
+    useEffect(() => {
+        setTimeout(() => setVisible(true), 100);
+    }, []);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTimeLeft(getTimeLeft());
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <>
             <style>{keyframes}</style>
-
-            {/* ── Hero ── */}
             <Box sx={heroWrapSx}>
                 <Box sx={shimmerLineSx} />
 
@@ -117,7 +128,6 @@ const AdmissionsPage = () => {
 
                 <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
 
-                    {/* breadcrumb */}
                     <Stack direction="row" alignItems="center" gap={1} sx={{ mb: 3, animation: visible ? 'ad_heroIn .6s ease .1s both' : 'none' }}>
                         <Box component={Link} to="/" sx={crumbHomeSx}>Home</Box>
                         <Box sx={{ width: 4, height: 4, borderRadius: '50%', bgcolor: colors.secondary.main }} />
@@ -126,7 +136,6 @@ const AdmissionsPage = () => {
 
                     <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 6, alignItems: 'center' }}>
 
-                        {/* LEFT */}
                         <Box>
                             <Stack direction="row" alignItems="center" gap={1.5} sx={{ mb: 2.5, animation: visible ? 'ad_heroIn .6s ease .2s both' : 'none' }}>
                                 <Box sx={labelBarSx} />
@@ -159,21 +168,22 @@ const AdmissionsPage = () => {
                             </Stack>
                         </Box>
 
-                        {/* RIGHT — image */}
                         <Box sx={{ position: 'relative', display: { xs: 'none', md: 'block' }, animation: visible ? 'ad_heroIn .8s ease .3s both' : 'none' }}>
                             <Box component="img" src="/admissions-hero.jpg" alt="Admissions at Pamsset" sx={heroImgSx} />
                             <Box sx={heroImgFrameSx} />
 
-                            {/* countdown badge */}
                             <Box sx={deadlineBadgeSx}>
                                 <Stack direction="row" alignItems="center" gap={1.2}>
                                     <AccessTimeIcon sx={{ color: colors.primary.dark, fontSize: 20 }} />
                                     <Box>
                                         <Typography sx={{ fontFamily: typography.fontFamily.main, fontSize: typography.fontSize.xl, fontWeight: typography.fontWeight.extraBold, color: colors.primary.dark, lineHeight: 1 }}>
-                                            {daysLeft}
+                                            {timeLeft.days}
                                         </Typography>
                                         <Typography sx={{ fontFamily: typography.fontFamily.main, fontSize: '0.6rem', fontWeight: typography.fontWeight.bold, color: `${colors.primary.dark}AA`, letterSpacing: 1, textTransform: 'uppercase' }}>
                                             Days Left
+                                        </Typography>
+                                        <Typography sx={{ fontFamily: typography.fontFamily.main, fontSize: '0.65rem', fontWeight: typography.fontWeight.bold, color: colors.primary.dark, letterSpacing: 0.5, mt: 0.4, lineHeight: 1 }}>
+                                            {pad(timeLeft.hours)}:{pad(timeLeft.minutes)}:{pad(timeLeft.seconds)}
                                         </Typography>
                                     </Box>
                                 </Stack>
@@ -183,7 +193,6 @@ const AdmissionsPage = () => {
                 </Container>
             </Box>
 
-            {/* ── Section label ── */}
             <Box sx={sectionWrapSx}>
                 <Container maxWidth="xl">
                     <Box sx={{ textAlign: 'center', animation: visible ? 'ad_heroIn .7s ease .6s both' : 'none' }}>
@@ -200,7 +209,6 @@ const AdmissionsPage = () => {
                 </Container>
             </Box>
 
-            {/* ── Cards grid ── */}
             <Box sx={cardsWrapSx}>
                 <Container maxWidth="xl">
                     <Box sx={{
