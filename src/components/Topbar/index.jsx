@@ -98,8 +98,6 @@ const TopBar = ({ onMobileOpen }) => (
             </Typography>
           </Box>
         </Box>
-
-        {/* ── Desktop links + socials ── */}
         <Stack direction="row" alignItems="center" sx={{ gap: 1, display: { xs: 'none', md: 'flex' } }}>
           {topLinks.map((link, i) => (
             <Stack key={link.label} direction="row" alignItems="center">
@@ -115,7 +113,6 @@ const TopBar = ({ onMobileOpen }) => (
           ))}
         </Stack>
 
-        {/* ── Mobile hamburger ── */}
         <IconButton onClick={onMobileOpen}
           sx={{ display: { xs: 'flex', md: 'none' }, color: colors.primary.main, '&:hover': { color: colors.secondary.main } }}>
           <MenuIcon />

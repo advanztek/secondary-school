@@ -53,45 +53,24 @@ const socials = [
 const contact = [
   { Icon:LocationOnIcon, label:'Location',  text:'Aliade, Benue State, Nigeria'  },
   { Icon:PhoneIcon,      label:'Phone',     text:'+234 800 000 0000'             },
-  { Icon:EmailIcon,      label:'Email',     text:'info@pamsset.edu.ng'           },
+  { Icon:EmailIcon,      label:'Email',     text:'docpansset@gmail.com'           },
   { Icon:AccessTimeIcon, label:'Hours',     text:'Mon – Fri: 7:30am – 4:30pm'   },
 ];
 
 const Footer = () => (
   <>
     <style>{keyframes}</style>
-
-    {/* <Box sx={{ bgcolor:colors.background.default, py:1.3 }}>
-      <Container maxWidth="xl">
-        <Stack direction={{ xs:'column', sm:'row' }} justifyContent="space-between" alignItems="center" gap={1}>
-          <Typography sx={{ fontFamily:typography.fontFamily.main, fontSize:typography.fontSize.sm, fontWeight:typography.fontWeight.semiBold, color:colors.primary.dark }}>
-            📞 Admissions Helpline: <strong>+234 800 000 0000</strong>
-          </Typography>
-          <Stack direction="row" alignItems="center" gap={1}>
-            <Box sx={{ width:7, height:7, borderRadius:'50%', bgcolor:colors.primary.dark, animation:'ft_pulse 2s ease infinite' }} />
-            <Typography sx={{ fontFamily:typography.fontFamily.main, fontSize:typography.fontSize.xs, fontWeight:typography.fontWeight.bold, color:colors.primary.dark }}>
-              Applications Open — 2026/2027 Session
-            </Typography>
-          </Stack>
-        </Stack>
-      </Container>
-    </Box> */}
-
     <Box component="footer" sx={{
       bgcolor: colors.primary.dark, color:'white',
       position:'relative', overflow:'hidden',
-      /* dot grid */
       '&::before':{ content:'""', position:'absolute', inset:0, backgroundImage:`radial-gradient(rgba(255,255,255,0.045) 1.5px, transparent 1.5px)`, backgroundSize:'26px 26px', pointerEvents:'none' },
-      /* right side glow */
       '&::after':{ content:'""', position:'absolute', top:'-10%', right:'-8%', width:450, height:450, borderRadius:'50%', bgcolor:colors.primary.main, opacity:.18, filter:'blur(80px)', pointerEvents:'none' },
     }}>
 
-      {/* gold shimmer top line */}
       <Box sx={{ height:3, background:`linear-gradient(90deg,transparent,${colors.secondary.dark},${colors.secondary.main},${colors.secondary.light},${colors.secondary.main},${colors.secondary.dark},transparent)`, backgroundSize:'600px 100%', animation:'ft_shimmer 4s linear infinite' }} />
 
       <Container maxWidth="xl" sx={{ position:'relative', zIndex:1 }}>
 
-        {/* ── CONTACT ROW — flex, not stacked ── */}
         <Box sx={{ mt:5, mb:5, pb:4, borderBottom:`1px solid rgba(255,255,255,0.08)` }}>
           <Stack direction={{ xs:'column', sm:'row' }} flexWrap="wrap" gap={{ xs:3, sm:0 }} justifyContent="space-between" alignItems="center">
             {contact.map(({ Icon, label, text }, i) => (

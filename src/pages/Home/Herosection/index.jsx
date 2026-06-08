@@ -10,12 +10,12 @@ const slides = [
     heading: 'Shaping Leaders\nof Tomorrow',
     sub: 'A world-class secondary school committed to academic excellence, character, and purpose.',
   },
-  {
-    src: '/hero2.jpg',
-    tag: 'Academic Excellence',
-    heading: 'Where Knowledge\nMeets Ambition',
-    sub: 'Our curriculum nurtures critical thinking, creativity, and a passion for lifelong learning.',
-  },
+  // {
+  //   src: '/hero2.jpg',
+  //   tag: 'Academic Excellence',
+  //   heading: 'Where Knowledge\nMeets Ambition',
+  //   sub: 'Our curriculum nurtures critical thinking, creativity, and a passion for lifelong learning.',
+  // },
   {
     src: '/life.png',
     tag: 'Beyond the Classroom',

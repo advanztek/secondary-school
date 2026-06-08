@@ -72,8 +72,6 @@ const BottomNav = () => {
   return (
     <>
       <style>{keyframes}</style>
-
-      {/* ── Desktop nav bar ── */}
       <Box
         sx={{
           bgcolor: colors.primary.main,
@@ -91,7 +89,6 @@ const BottomNav = () => {
         <Container maxWidth="xl">
           <Stack direction="row" alignItems="center" justifyContent="space-between">
 
-            {/* Nav links */}
             <Stack direction="row" alignItems="stretch">
               {mainNavLinks.map((link) => {
                 const isActive = location.pathname === link.path || location.pathname.startsWith(link.path + '/');
@@ -110,40 +107,34 @@ const BottomNav = () => {
               })}
             </Stack>
 
-            {/* Search button */}
             <Box onClick={openSearch} sx={{ display: 'flex', alignItems: 'center', px: 1.2, py: 0.8, borderRadius: '8px', cursor: 'pointer', border: `1px solid rgba(255,255,255,0.1)`, transition: 'all 0.22s ease', '&:hover': { bgcolor: 'rgba(255,255,255,0.07)', borderColor: `${colors.secondary.main}66`, '& .search-icon': { color: colors.secondary.main } } }}>
               <SearchIcon className="search-icon" sx={{ fontSize: 25, color: 'rgba(255,255,255,0.6)', transition: 'color 0.2s ease' }} />
             </Box>
           </Stack>
         </Container>
 
-        {/* Dropdown menus */}
         {mainNavLinks.map((link) =>
           link.dropdown ? <DropdownMenu key={link.label} items={link.dropdown} label={link.label} visible={activeDropdown === link.label} onClose={() => setActiveDropdown(null)} /> : null
         )}
       </Box>
 
-      {/* ── Search Modal ── */}
       <Modal open={searchOpen} onClose={closeSearch} sx={{ zIndex: 1500 }} disableAutoFocus>
         <Box
           onClick={closeSearch}
           sx={{
             position: 'fixed', inset: 0,
-            // Theme-based backdrop: deep navy with gold shimmer hint
             background: `linear-gradient(135deg, ${colors.primary.dark}55 0%, ${colors.primary.main}44 50%, ${colors.primary.dark}55 100%)`,
             backdropFilter: 'blur(3px)',
             display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
             pt: { xs: 10, md: 13 },
             px: 2,
             animation: 'bn_backdropIn 0.2s ease both',
-            // Subtle dot pattern overlay
             '&::before': {
               content: '""', position: 'absolute', inset: 0,
               backgroundImage: `radial-gradient(${colors.secondary.main}08 1px, transparent 1px)`,
               backgroundSize: '28px 28px',
               pointerEvents: 'none',
             },
-            // Gold shimmer top line
             '&::after': {
               content: '""', position: 'absolute', top: 0, left: 0, right: 0, height: 2,
               background: `linear-gradient(90deg, transparent, ${colors.secondary.main}, ${colors.secondary.light}, ${colors.secondary.main}, transparent)`,
@@ -153,7 +144,6 @@ const BottomNav = () => {
             },
           }}
         >
-          {/* Modal card */}
           <Box
             onClick={(e) => e.stopPropagation()}
             sx={{
@@ -168,10 +158,8 @@ const BottomNav = () => {
               zIndex: 1,
             }}
           >
-            {/* Gold top bar on modal */}
             <Box sx={{ height: 2, background: `linear-gradient(90deg, transparent, ${colors.secondary.main}, ${colors.secondary.light}, ${colors.secondary.main}, transparent)`, backgroundSize: '400px 100%', animation: 'bn_shimmer 3s linear infinite' }} />
 
-            {/* Search input row */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, px: 2.5, py: 2.2, borderBottom: `1px solid rgba(255,255,255,0.06)` }}>
               <SearchIcon sx={{ color: colors.secondary.main, fontSize: 22, flexShrink: 0, animation: 'bn_pulse 2s ease infinite' }} />
               <InputBase
@@ -212,8 +200,6 @@ const BottomNav = () => {
                 ))}
               </Box>
             )}
-
-            {/* Quick links — shown when no query */}
             {!query.trim() && (
               <Box sx={{ px: 2.5, py: 3 }}>
                 <Stack direction="row" alignItems="center" gap={1.5} sx={{ mb: 2 }}>
@@ -235,7 +221,6 @@ const BottomNav = () => {
               </Box>
             )}
 
-            {/* No results */}
             {query.trim() && !results.length && (
               <Box sx={{ px: 2.5, py: 4, textAlign: 'center' }}>
                 <Typography sx={{ fontFamily: typography.fontFamily.body, fontSize: typography.fontSize.sm, color: 'rgba(255,255,255,0.2)' }}>
@@ -244,7 +229,6 @@ const BottomNav = () => {
               </Box>
             )}
 
-            {/* Footer */}
             <Box sx={{ px: 2.5, py: 1.5, borderTop: `1px solid rgba(255,255,255,0.04)`, display: 'flex', gap: 3 }}>
               <Typography sx={{ fontFamily: typography.fontFamily.body, fontSize: '0.6rem', color: 'rgba(255,255,255,0.18)', letterSpacing: 0.5 }}>↵ to navigate</Typography>
               <Typography sx={{ fontFamily: typography.fontFamily.body, fontSize: '0.6rem', color: 'rgba(255,255,255,0.18)', letterSpacing: 0.5 }}>ESC to close</Typography>
