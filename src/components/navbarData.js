@@ -1,7 +1,19 @@
 export const topLinks = [
-  { label: "Parents", path: "https://portal.pamssetschool.com/" },
-  { label: "Students", path: "https://portal.pamssetschool.com/" },
-  { label: "Staff", path: "https://portal.pamssetschool.com/" },
+  {
+    label: "Parents",
+    path: "https://portal.pamssetschool.com/",
+    target: "_blank",
+  },
+  {
+    label: "Students",
+    path: "https://portal.pamssetschool.com/",
+    target: "_blank",
+  },
+  {
+    label: "Staff",
+    path: "https://portal.pamssetschool.com/",
+    target: "_blank",
+  },
 ];
 export const socials = [
   { label: "Facebook", href: "#" },

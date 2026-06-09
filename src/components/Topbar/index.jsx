@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Box, Container, Typography, Stack, IconButton } from "@mui/material";
-import FacebookIcon        from "@mui/icons-material/Facebook";
-import InstagramIcon       from "@mui/icons-material/Instagram";
-import YouTubeIcon         from "@mui/icons-material/YouTube";
-import PersonOutlinedIcon  from "@mui/icons-material/PersonOutlined";
-import MenuIcon            from "@mui/icons-material/Menu";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import { topLinks, socials } from "../navbarData";
 import { colors, typography } from "../../theme";
@@ -14,7 +14,7 @@ const socialIcons = { Facebook: FacebookIcon, Instagram: InstagramIcon, YouTube:
 const PortalLink = ({ label, path }) => {
   const [hovered, setHovered] = useState(false);
   return (
-    <a href={path}
+    <a href={path} target="_blank" rel="noreferrer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
